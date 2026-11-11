@@ -1,0 +1,131 @@
+{
+  "symbol": "HCLTECH",
+  "name": "HCL Technologies",
+  "asOf": "2025-03-31",
+  "mode": "verified_snapshot",
+  "summary": "Historical FY2025 evidence: 4.7% constant-currency revenue growth and 18.3% operating margin were within the original annual guidance bands. Services and software had different growth rates.",
+  "findings": [
+    {
+      "id": "hcl-guidance",
+      "title": "Original annual growth and margin bands were met",
+      "body": "The April 2024 call guided to FY2025 revenue growth of 3–5% in constant currency and an 18–19% operating margin. The April 2025 call reported 4.7% and 18.3%, respectively.",
+      "importance": "high",
+      "sourceIds": [
+        "hcl-initial",
+        "hcl-outcome",
+        "hcl-annual"
+      ]
+    },
+    {
+      "id": "hcl-mix",
+      "title": "Services and software grew at different rates",
+      "body": "Management reported FY2025 Services growth of 4.8% in constant currency and HCLSoftware growth of 3.5%. Software annual recurring revenue was US$1.03 billion.",
+      "importance": "medium",
+      "sourceIds": [
+        "hcl-outcome",
+        "hcl-annual"
+      ]
+    },
+    {
+      "id": "hcl-cash",
+      "title": "Annual report provides a separate cash check",
+      "body": "The FY2025 annual report records operating cash flow of US$2.6 billion and free cash flow of US$2.5 billion. These are reported company measures, not forecasts.",
+      "importance": "medium",
+      "sourceIds": [
+        "hcl-annual"
+      ]
+    }
+  ],
+  "commitments": [
+    {
+      "id": "hcl-growth",
+      "topic": "FY2025 revenue growth · original",
+      "statement": "On 26 April 2024, management set its original FY2025 revenue outlook.",
+      "target": "3–5% year-on-year growth in constant currency; FY2025",
+      "observed": "4.7% year-on-year growth in constant currency; FY2025",
+      "status": "met",
+      "reason": "The annual company growth outcome was inside the original band. Acquisitions are included; this is not an organic-growth comparison.",
+      "sourceIds": [
+        "hcl-initial",
+        "hcl-outcome",
+        "hcl-annual"
+      ]
+    },
+    {
+      "id": "hcl-margin",
+      "topic": "FY2025 operating margin",
+      "statement": "On 26 April 2024, management set an annual operating margin range.",
+      "target": "18–19% operating margin; FY2025",
+      "observed": "18.3% operating margin; FY2025",
+      "status": "met",
+      "reason": "The reported annual outcome was inside the original range.",
+      "sourceIds": [
+        "hcl-initial",
+        "hcl-outcome",
+        "hcl-annual"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "hcl-initial",
+      "title": "Q4 FY2024 earnings call · 26 April 2024",
+      "url": "https://www.hcltech.com/sites/default/files/document/open/call-trans/2024-04/HCLTech-Earnings-Apr26-2024.pdf",
+      "excerpt": "Revenue growth, we are guiding for 3% to 5% in constant currency.",
+      "kind": "earnings-call",
+      "published": "2024-04-26",
+      "page": 7
+    },
+    {
+      "id": "hcl-outcome",
+      "title": "Q4 FY2025 earnings call · 22 April 2025",
+      "url": "https://www.hcltech.com/sites/default/files/documents/investor-reports/HCLTech-Earnings-Q4FY25-Transcript.pdf",
+      "excerpt": "In FY25, we reported a consolidated revenue of $13.84 billion, an increase of 4.7% in constant currency.",
+      "kind": "earnings-call",
+      "published": "2025-04-22"
+    },
+    {
+      "id": "hcl-annual",
+      "title": "Annual Report 2024–25 · Management Discussion and Analysis, Business Highlights",
+      "url": "https://www.hcltech.com/sites/default/files/documents/resources/pdf-landing-page/files/2025/08/02/Annual-Report-2024-25.pdf",
+      "excerpt": "Our Operating Cash Flow (OCF) and Free Cash Flow (FCF) were $2.6 billion and $2.5 billion, respectively.",
+      "kind": "annual-report"
+    }
+  ],
+  "financials": [
+    {
+      "metric": "Revenue growth",
+      "value": 4.7,
+      "unit": "% · constant currency YoY",
+      "period": "FY2025",
+      "sourceIds": [
+        "hcl-outcome",
+        "hcl-annual"
+      ]
+    },
+    {
+      "metric": "Operating margin",
+      "value": 18.3,
+      "unit": "%",
+      "period": "FY2025",
+      "sourceIds": [
+        "hcl-outcome",
+        "hcl-annual"
+      ]
+    },
+    {
+      "metric": "Free cash flow",
+      "value": 2.5,
+      "unit": "USD billion",
+      "period": "FY2025",
+      "sourceIds": [
+        "hcl-annual"
+      ]
+    }
+  ],
+  "warnings": [
+    "Historical example for the year ended 31 March 2025; sources checked on 11 November 2026. This is not the latest company result.",
+    "Extractive, manually verified evidence; no model-generated analysis. Comparisons use original annual guidance, not every interim revision.",
+    "CC growth includes acquisitions. Do not compare this company total directly with organic growth. Annual-report publication date was not independently established."
+  ]
+}

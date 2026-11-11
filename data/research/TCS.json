@@ -1,0 +1,121 @@
+{
+  "symbol": "TCS",
+  "name": "Tata Consultancy Services",
+  "asOf": "2025-03-31",
+  "mode": "verified_snapshot",
+  "summary": "Historical FY2025 evidence: TCS reported 4.2% constant-currency revenue growth and 24.3% operating margin. Its AI workforce ambition cannot be scored from employee training counts alone.",
+  "findings": [
+    {
+      "id": "tcs-annual",
+      "title": "Annual growth and profitability are documented",
+      "body": "The FY2025 earnings call reports 4.2% constant-currency revenue growth, 24.3% operating margin and 19% net margin.",
+      "importance": "high",
+      "sourceIds": [
+        "tcs-outcome"
+      ]
+    },
+    {
+      "id": "tcs-workforce",
+      "title": "AI ambition has an evidence gap",
+      "body": "In July 2024, management aimed to build the world’s largest AI-ready workforce. The annual report records over 100,000 employees acquiring higher-order AI/ML and GenAI skills, but supplies no comparable global ranking.",
+      "importance": "high",
+      "sourceIds": [
+        "tcs-intent",
+        "tcs-annual"
+      ]
+    },
+    {
+      "id": "tcs-talent",
+      "title": "Hiring is an outcome, not proof of an earlier target",
+      "body": "The annual report records 42,000 freshers hired during FY2025. The selected evidence set does not establish an earlier numeric hiring commitment, so this outcome is not scored as a promise kept.",
+      "importance": "medium",
+      "sourceIds": [
+        "tcs-annual"
+      ]
+    },
+    {
+      "id": "tcs-orders",
+      "title": "Orders are a separate measure from revenue",
+      "body": "The FY2025 call reports Q4 total contract value of US$12.2 billion. A signed-order measure does not establish when revenue will be recognized.",
+      "importance": "medium",
+      "sourceIds": [
+        "tcs-outcome"
+      ]
+    }
+  ],
+  "commitments": [
+    {
+      "id": "tcs-ai-workforce",
+      "topic": "AI-ready workforce ambition",
+      "statement": "On 11 July 2024, management stated an ambition to build the largest AI-ready workforce through employee reskilling.",
+      "target": "World’s largest AI-ready workforce; no deadline or common measurement supplied",
+      "observed": "Annual report: 100,000+ acquired higher-order AI/ML and GenAI skills in FY2025",
+      "status": "unclear",
+      "reason": "The report shows skilling activity, but no peer comparison or common definition establishes the superlative. No met/missed verdict is justified.",
+      "sourceIds": [
+        "tcs-intent",
+        "tcs-annual"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "tcs-intent",
+      "title": "Q1 FY2025 earnings call · 11 July 2024",
+      "url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2024-25/q1/Management%20Commentary/Transcript%20of%20the%20Q1%202024-25%20Earnings%20Conference%20Call%20held%20on%20Jul%2011%2C%202024.pdf",
+      "excerpt": "We plan to build the largest AI-ready workforce in the world, by organically reskilling our employees.",
+      "kind": "earnings-call",
+      "published": "2024-07-11"
+    },
+    {
+      "id": "tcs-outcome",
+      "title": "Q4 FY2025 earnings call · 10 April 2025",
+      "url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2024-25/q4/Management%20Commentary/Transcript%20of%20the%20Q4%202024-25%20Earnings%20Conference%20Call%20held%20at%201900%20hrs%20IST%20on%20Apr%2010%2C%202025.pdf",
+      "excerpt": "Our financial year 2025 revenue grew by 4.2% in constant currency.",
+      "kind": "earnings-call",
+      "published": "2025-04-10"
+    },
+    {
+      "id": "tcs-annual",
+      "title": "Integrated Annual Report 2024–25 · Human Capital, Talent Development",
+      "url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2024-25/ar/annual-report-2024-2025.pdf",
+      "excerpt": "acquired higher order skills in AI/ML and GenAI",
+      "kind": "annual-report",
+      "published": "2025-05-27"
+    }
+  ],
+  "financials": [
+    {
+      "metric": "Revenue growth",
+      "value": 4.2,
+      "unit": "% · constant currency YoY",
+      "period": "FY2025",
+      "sourceIds": [
+        "tcs-outcome"
+      ]
+    },
+    {
+      "metric": "Operating margin",
+      "value": 24.3,
+      "unit": "%",
+      "period": "FY2025",
+      "sourceIds": [
+        "tcs-outcome"
+      ]
+    },
+    {
+      "metric": "Net margin",
+      "value": 19,
+      "unit": "%",
+      "period": "FY2025",
+      "sourceIds": [
+        "tcs-outcome"
+      ]
+    }
+  ],
+  "warnings": [
+    "Historical example for the year ended 31 March 2025; sources checked on 11 November 2026. This is not the latest company result.",
+    "Extractive, manually verified evidence; no model-generated analysis. Aspirations without comparable outcomes remain unclear.",
+    "No numeric annual revenue guidance comparison is inferred. The selected transcripts do not establish a measurable revenue commitment."
+  ]
+}
