@@ -6,7 +6,19 @@ const json=(value,status=200)=>new Response(JSON.stringify(value),{status,header
 export function createApp({assets,bootstrap,researchPacks}) {
   let market=bootstrap,lastRefresh=0,refreshing=null;
   const recentRequests=new Map();
-  async function refresh(){if(Date.now()-lastRefresh<900000)return market;if(!refreshing)refreshing=refreshMarket(market).then(value=>{market=value;lastRefresh=Date.now();return value;}).finally(()=>refreshing=null);return refreshing;}
+  const checkedSymbols=new Set();
+  async function refresh(symbols=[]){
+    if(refreshing)await refreshing;
+    if(Date.now()-lastRefresh<900000&&symbols.every(s=>checkedSymbols.has(s)))return market;
+    const requested=[...new Set([...checkedSymbols,...symbols])];
+    refreshing=refreshMarket(market,requested).then(value=>{
+      market=value;lastRefresh=Date.now();
+      checkedSymbols.clear();
+      if(value.sourceStatus.announcements.status==='ok')for(const s of [...value.portfolio.map(p=>p.symbol),...requested])checkedSymbols.add(s);
+      return value;
+    }).finally(()=>refreshing=null);
+    return refreshing;
+  }
   async function research(symbol,fresh){return !fresh&&researchPacks[symbol]?researchPacks[symbol]:researchCompany(symbol,{force:fresh});}
   return {async fetch(request,env={}) {
     const url=new URL(request.url),path=url.pathname;
@@ -43,7 +55,7 @@ export function createApp({assets,bootstrap,researchPacks}) {
           if(!Array.isArray(watches)||watches.length>30)return json({error:'Check up to 30 saved questions at a time.'},400);
           const valid=watches.map(w=>({...w,symbol:normalizeSymbol(w.symbol)}));
           if(valid.some(w=>!Number.isFinite(Date.parse(w.createdAt))||String(w.question).length>1000))return json({error:'Invalid saved question.'},400);
-          const data=await refresh();
+          const data=await refresh(valid.map(w=>w.symbol));
           const checks=valid.map(w=>({id:w.id,checkedAt:new Date().toISOString(),status:data.sourceStatus.announcements.status==='error'?'unavailable':'checked',events:data.events.filter(e=>e.symbol===w.symbol&&Date.parse(e.publishedAt)>Date.parse(w.createdAt)&&e.priority>10).slice(0,5)}));
           return json({checks,sourceStatus:data.sourceStatus});
         }

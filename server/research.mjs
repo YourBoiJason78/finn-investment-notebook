@@ -81,11 +81,14 @@ export function validateModelAnswer(value,validIds) {
 }
 export async function answerQuestion(pack,question,env={}) {
   const passages=[];
-  if(pack._documents){for(let i=0;i<pack._documents.length;i++){const doc=pack._documents[i];for(const p of retrievePassages(doc.pages,question,2))passages.push({id:pack.sources[i].id,page:p.page,text:p.text});}}
-  else for(const source of pack.sources||[])passages.push({id:source.id,page:source.page,text:source.excerpt});
+  if(pack._documents){for(let i=0;i<pack._documents.length;i++){
+    const doc=pack._documents[i],source=pack.sources[i];
+    for(const [j,p] of retrievePassages(doc.pages,question,2).entries())passages.push({id:`${source.id}-p${p.page}-${j}`,documentId:source.id,page:p.page,text:p.text});
+  }}
+  else for(const source of pack.sources||[])passages.push({id:source.id,documentId:source.id,page:source.page,text:source.excerpt});
   const related=passages.filter(p=>retrievePassages([p.text],question,1).length).slice(0,6);
   const sourceIds=[...new Set(related.map(p=>p.id))];
-  const sources=(pack.sources||[]).filter(s=>sourceIds.includes(s.id)).map(s=>{const p=related.find(p=>p.id===s.id);return {...s,page:p?.page||s.page,excerpt:shortQuote(p?.text||s.excerpt)};});
+  const sources=related.map(p=>({...pack.sources.find(s=>s.id===p.documentId),id:p.id,page:p.page,excerpt:shortQuote(p.text)}));
   if(!related.length)return {answer:'I did not find a matching passage in the documents currently read. Try a more specific financial term, or open the original sources. This does not mean the company has not disclosed it.',sourceIds:[],sources:[],mode:'extractive'};
   if(env.GEMINI_API_KEY&&env.GEMINI_MODEL){
     try{

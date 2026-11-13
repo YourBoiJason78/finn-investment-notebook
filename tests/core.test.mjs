@@ -30,6 +30,10 @@ test('exchange boilerplate and lifecycle management do not imply leadership chan
  const e=classifyEvent({desc:'Updates',attchmntText:"HCL Technologies Limited has informed the Exchange regarding a collaboration for product lifecycle management."});
  assert.notEqual(e.category,'Leadership');
 });
+test('newspaper copies of financial results remain routine follow-up paperwork',()=>{
+ assert.equal(classifyEvent({desc:'Copy of Newspaper Publication',attchmntText:'Newspaper publication for Unaudited financial results for the quarter'}).category,'Routine');
+ assert.equal(classifyEvent({desc:'General Updates',attchmntText:'Publication of Newspaper Advertisements w.r.t Audited Financial Results'}).category,'Routine');
+});
 test('time window filters both start and end; zero means all available', () => {
   const e = [{id:'1',publishedAt:'2026-11-10T06:00:00Z',priority:60},{id:'2',publishedAt:'2026-11-11T06:00:00Z',priority:90},{id:'3',publishedAt:'2026-11-12T06:00:00Z',priority:99}];
   assert.deepEqual(filterEvents(e,{hours:24,now:'2026-11-11T07:00:00Z'}).map(x=>x.id),['2']);

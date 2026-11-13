@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import {summarizePrices,classifyEvent} from '../server/core.mjs';
 const raw=JSON.parse(await fs.readFile('data/raw-market.json','utf8'));
 const portfolio=raw.portfolio.map(({chart,...company})=>{
-  try{return {...company,price:summarizePrices(chart)};}catch{return {...company,price:null,error:company.error||'No completed trading-day prices available.'};}
+  try{return {...company,price:summarizePrices(chart,Date.parse(raw.collectedAt))};}catch{return {...company,price:null,error:company.error||'No completed trading-day prices available.'};}
 });
 const events=raw.filings.flatMap(f=>f.records.map(classifyEvent)).filter(e=>e.publishedAt);
 const pricesOkay=portfolio.filter(p=>p.price).length;

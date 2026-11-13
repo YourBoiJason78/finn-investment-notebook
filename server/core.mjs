@@ -4,13 +4,13 @@ export function normalizeSymbol(value) {
   return symbol;
 }
 
-export function summarizePrices(chart) {
+export function summarizePrices(chart,observedAt=Date.now()) {
   const quote = chart?.indicators?.quote?.[0] || {};
   // The current trading session is not end-of-day data until the exchange closes.
   const end = chart?.meta?.currentTradingPeriod?.regular?.end;
   const start = chart?.meta?.currentTradingPeriod?.regular?.start;
   const history = (chart?.timestamp || []).map((t, i) => ({date:new Date(t * 1000).toISOString(),close:quote.close?.[i],volume:quote.volume?.[i],timestamp:t}))
-    .filter(p => Number.isFinite(p.close) && p.close > 0 && !(end && Date.now() / 1000 < end && p.timestamp >= start))
+    .filter(p => Number.isFinite(p.close) && p.close > 0 && !(end && observedAt / 1000 < end && p.timestamp >= start))
     .map(({timestamp,...p})=>p);
   if (!history.length) throw new Error('No completed trading-day prices available.');
   const last = history.at(-1), prev = history.at(-2);
@@ -36,6 +36,7 @@ export function classifyEvent(record) {
   const text = `${title} ${detail}`.toLowerCase();
   let category='Other',priority=40,reason='A new company disclosure. Open the original filing to assess its relevance.';
   const rules=[
+    [/newspaper.*(?:publication|advertisement)|publication.*newspaper/,'Routine',10,'A newspaper publication notice repeats a disclosure; the original results filing remains available separately.'],
     [/\bresign(?:ation|ed|s)?\b|\bchief financial\b|\bchief executive\b|\bchange(?:s)?\b.*\bmanagement\b|\bappointment\b.*\b(?:cfo|ceo|director)\b/,'Leadership',90,'A leadership change can affect execution and financial oversight.'],
     [/financial results|quarterly results|audited.*results|unaudited.*results/,'Results',95,'New financial results can change the evidence behind your investment view.'],
     [/acquisition|merger|demerger|scheme of arrangement|divest/,'Corporate action',85,'A change in business ownership or structure deserves a closer look.'],

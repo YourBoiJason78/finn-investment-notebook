@@ -10,7 +10,7 @@ export async function pooled(items,fn,concurrency=4) {
   await Promise.all(Array.from({length:Math.min(concurrency,items.length)},async()=>{while(next<items.length){const i=next++;result[i]=await fn(items[i],i);}}));
   return result;
 }
-export async function refreshMarket(previous) {
+export async function refreshMarket(previous,watchedSymbols=[]) {
   const checkedAt=new Date().toISOString();
   const portfolio=await pooled(previous.portfolio,async company=>{
     try{
@@ -24,7 +24,7 @@ export async function refreshMarket(previous) {
   try{
     const raw=await fetchJson('https://www.nseindia.com/api/corporate-announcements?index=equities',18000);
     if(!Array.isArray(raw))throw new Error('Unexpected exchange format.');
-    const symbols=new Set(portfolio.map(p=>p.symbol));
+    const symbols=new Set([...portfolio.map(p=>p.symbol),...watchedSymbols]);
     const current=raw.filter(r=>symbols.has(r.symbol)).map(classifyEvent).filter(e=>e.publishedAt);
     const merged=new Map([...previous.events,...current].map(e=>[e.id,e]));
     events=[...merged.values()].sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt)).slice(0,1800);
