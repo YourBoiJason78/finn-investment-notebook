@@ -24,4 +24,4 @@ Codex helped interpret the brief, propose FINN, investigate source availability,
 
 ## What has not been established
 
-No real model account/key has been configured, and no live generated answer quality evaluation has been completed. The development history should not be presented as entirely manual work. The user still needs to understand and personally review the project, choose reviewer access, and supply the actual conversation record before submission.
+The user created a Gemini API key and supplied it through an ignored local settings file. It was stored as a hosted secret. Live checks on 14 November 2026 covered the Infosys guidance comparison and WIPRO margin evidence. The WIPRO check exposed sentence splitting at decimal points; a reproducing test failed before the parser was corrected, and all 21 tests then passed. These examples do not establish broad generated-answer reliability. The development history should not be presented as entirely manual work. The user still needs to understand and personally review the project, choose reviewer access, and supply the actual conversation record before submission.

@@ -19,3 +19,7 @@ Final: Ruling: the reviewer did not judge frontend, real provider reliability, h
 Final: Ruling: proceed to private publication and the newly created private GitHub repository under the user's “do it” authorization. No further integration menu is needed. Preserve the workspace and source branch for the user's continued work.
 
 Delivery materials prepared: README, demo script, decision record, honest AI collaboration summary and unsent covering email. The actual conversation export, reviewer access and optional live model credentials are still user/account steps. No font assets have been licensed or bundled.
+
+## 14 November model connection
+
+User supplied the Gemini key through ignored `.env`. Connected `gemini-3.5-flash-lite` as a hosted secret; no key is in source or archives. A live Infosys answer correctly distinguished original and revised guidance. A WIPRO check exposed decimal truncation at sentence boundaries. Added a failing reproduction, corrected passage splitting to preserve decimal numbers and units, then passed 21/21 tests. WIPRO now retains the 16.5% margin and its supporting page. Model checks establish these examples only; generated claims still require source review. Reviewer access and the actual conversation export remain outstanding.

@@ -40,9 +40,9 @@ The optional server adapter supports Google's Gemini `generateContent` API. Set 
 node --env-file=.env scripts/dev.mjs
 ```
 
-On the hosted site, set those values as server environment variables. Never put a key in `web/`, a Git commit, or a chat message. There is no configured key in this delivery. Without one, the app explicitly returns matching primary-source excerpts. Prepared FY2025 comparisons are curated evidence, not simulated model runs.
+On the hosted site, those values are configured as server environment variables, with the API key stored as a secret. The connected model is `gemini-3.5-flash-lite`. No credentials are included in this repository or source ZIP. Never put a key in `web/`, a Git commit, or a chat message. Local copies need their own configuration; without it, the app explicitly returns matching primary-source excerpts. Prepared FY2025 comparisons are curated evidence, not simulated model runs.
 
-The adapter restricts the prompt to retrieved evidence, validates citation IDs, and retains the cited PDF page. It does not prove that every generated claim is entailed by its citation. A deterministic provider mock tests the contract; a live paid model call has not been verified.
+The adapter restricts the prompt to retrieved evidence, validates citation IDs, and retains the cited PDF page. It does not prove that every generated claim is entailed by its citation. Deterministic provider mocks test the contract. Live Gemini checks on 14 November 2026 covered the Infosys guidance comparison and a WIPRO operating-margin question; these checks are examples, not a comprehensive factual-reliability evaluation.
 
 ## Data and boundaries
 
@@ -72,4 +72,4 @@ To regenerate a snapshot, install Python's `requests`, run `python python/collec
 
 ## Delivery status
 
-This is a working prototype, with explicit scope limits. The hosted site and GitHub repository are private by default. Reviewer access, the actual AI conversation export/share link, and optional model credentials need to be arranged before submitting. No covering email has been sent.
+This is a working prototype, with explicit scope limits. The hosted site and GitHub repository are private by default. Reviewer access and the actual AI conversation export/share link need to be arranged before submitting. Gemini synthesis is connected; free-tier availability and quotas still apply. No covering email has been sent.

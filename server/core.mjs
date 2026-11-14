@@ -84,7 +84,8 @@ export function retrievePassages(pages,question,limit=5) {
   if(!words.length)return [];
   const candidates=[];
   pages.forEach((page,i)=>{
-    const lines=cleanText(page).match(/[^.!?]+[.!?]?/g)||[];
+    // A decimal point belongs to the number; splitting there can drop its unit.
+    const lines=cleanText(page).split(/(?<=[.!?])\s+(?=[A-Z“"‘'])/);
     for(let j=0;j<lines.length;j++){
       const text=lines.slice(j,j+2).join(' ').trim().slice(0,1100);
       const lower=text.toLowerCase(),matches=words.filter(w=>lower.includes(w)).length;

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {summarizePrices} from '../server/core.mjs';
+import {summarizePrices,retrievePassages} from '../server/core.mjs';
 import {createApp} from '../server/app.mjs';
 import {answerQuestion} from '../server/research.mjs';
 
@@ -21,6 +21,13 @@ test('a new watched symbol is collected even after a cached portfolio refresh',a
 });
 
 const evidencePack={symbol:'TEST',sources:[{id:'report',url:'https://www.infosys.com/report.pdf',title:'Report',kind:'annual_report'}],_documents:[{pages:['Revenue growth initial guidance was ten percent for the year.','Revenue growth revenue growth actual outcome was five percent for the year.']}]};
+test('financial passage boundaries preserve decimal numbers and percentage units',()=>{
+ const pages=['Revenues were flat sequentially in constant currency terms. Our operating margin for the quarter was 16.8%. Revenue was $2.6 billion.'];
+ const passages=retrievePassages(pages,'operating margin',2);
+ assert.equal(passages.length,2);
+ for(const passage of passages)assert.match(passage.text,/16\.8%/);
+ assert.ok(passages.some(p=>p.text.includes('$2.6 billion')));
+});
 test('extractive answers preserve both page citations from the same document',async()=>{
  const a=await answerQuestion(evidencePack,'revenue growth');
  assert.equal(a.sources.length,2);
