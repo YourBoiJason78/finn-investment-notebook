@@ -30,8 +30,6 @@ The build produces a portable Worker at `dist/server/index.js`, with the interfa
 4. Enter WIPRO or another NSE symbol. FINN discovers annual reports and earnings-call transcripts, reads bounded portions, and reports gaps.
 5. Ask a focused question, inspect matching passages, and save an open question. **Watching** checks for newer filings on demand and when opened.
 
-See [the demo guide](docs/demo.md) for a short walkthrough, [design decisions](docs/decisions.md) for tradeoffs, and [AI collaboration history](docs/ai-history.md) for attribution.
-
 ## AI connection
 
 The optional server adapter supports Google's Gemini `generateContent` API. Set both `GEMINI_API_KEY` and `GEMINI_MODEL` to enable generated answers. Choose a model currently available to your account. For local development, copy `.env.example` to `.env`, fill it privately, and run:
@@ -47,7 +45,7 @@ The adapter restricts the prompt to retrieved evidence, validates citation IDs, 
 ## Data and boundaries
 
 - 18 mock NSE holdings across sectors, with dated Yahoo Finance end-of-day price observations and NSE announcements. These are not the user's actual investments.
-- Three curated historical research packs: Infosys, HCLTech and TCS, for FY2025. Their primary links and verification notes are in `docs/source-verification.md`.
+- Three curated historical research packs: Infosys, HCLTech and TCS, for FY2025. Primary-source links are included in the research cases.
 - Screener is used to discover document links; its commentary and financial tables are not used as research evidence. Only allowed company/exchange PDF hosts are read. Unsupported hosts are reported as unavailable.
 - Annual reports are bounded to the first 15 and last 25 pages; transcripts to the first 60. Long-report gaps, fetch failures and unknown outcomes are explicit. Scanned PDFs may yield no usable text.
 - The in-app brief is the proactive/push-style surface. There are **no background notifications**, scheduled jobs or email delivery. Watches are open questions, not automated thesis verdicts.
@@ -56,6 +54,8 @@ The adapter restricts the prompt to retrieved evidence, validates citation IDs, 
 - PP Neue Montreal is selected as the preferred local font. Proprietary font files are not bundled; Arial is the fallback until a licensed webfont is provided.
 
 ## How the code fits together
+
+See the [implementation summary](docs/implementation-summary.md) for architecture, trade-offs and development context.
 
 | Path | Responsibility |
 | --- | --- |
@@ -72,4 +72,4 @@ To regenerate a snapshot, install Python's `requests`, run `python python/collec
 
 ## Delivery status
 
-This is a working prototype, with explicit scope limits. The hosted site and GitHub repository are private by default. Reviewer access and the actual AI conversation export/share link need to be arranged before submitting. Gemini synthesis is connected; free-tier availability and quotas still apply. No covering email has been sent.
+This is a working prototype, with explicit scope limits. The hosted site and GitHub repository are public. Gemini synthesis is connected; free-tier availability and quotas still apply. Submission materials and the conversation export are maintained separately from this repository.
